@@ -1,13 +1,13 @@
-package com.rkb;
+package com.rkb.strings;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Practise {
+public class RemoveVowels {
 
 	public static void main(String[] args) {
-		Practise practise = new Practise();
+		RemoveVowels practise = new RemoveVowels();
 		String s = "aeiou12";
 		System.out.println(practise.removeVowels(s));
 
