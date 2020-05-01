@@ -65,6 +65,37 @@ public class LuckyNumber {
 	        return l;
 	    }
 	 
-	 
+	 // approach 2
+	 public List<Integer> luckyNumbers2 (int[][] matrix) {
+	        
+	        List<Integer> list = new ArrayList<>();
+	        
+	        for (int i = 0; i < matrix.length; i++) {
+	            
+	            int smallest = Integer.MAX_VALUE, index = 0;
+	            
+	            for (int j = 0; j < matrix[0].length; j++) {
+	                
+	                if (smallest > matrix[i][j]) {
+	                    
+	                    smallest = matrix[i][j];
+	                    index = j;
+	                }
+	            }
+	            
+	            int biggest = 0;
+	            for (int k = 0; k < matrix.length; k++) {
+	                
+	                biggest = Math.max(matrix[k][index], biggest);
+	            }
+	            
+	            if (biggest == smallest) {
+	                
+	                list.add(biggest);
+	            }
+	        }
+	        
+	        return list;
+	    }
 
 }
