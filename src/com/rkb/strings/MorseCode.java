@@ -47,5 +47,28 @@ public class MorseCode {
 
 	        return seen.size();
 	    }
+	 
+	 // appraoch 2
+	 public int uniqueMorseRepresentations2(String[] words) {
+	        String[] morseCodes = new String[] { ".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."  };
+	        
+	        Set<String> set = new HashSet<String>();
+	        for(String word : words){
+	            set.add(encode(word, morseCodes));
+	        }
+	        
+	        return set.size();
+	    }
+	    
+	    private String encode(String s, String[] morseCodes){
+	        StringBuilder code = new StringBuilder();
+	        int i, N = s.length();        
+	        
+	        for(i = 0; i < N; i++){
+	            code.append(morseCodes[s.charAt(i) - 'a']);
+	        }
+	        
+	        return code.toString();
+	    }
 
 }
