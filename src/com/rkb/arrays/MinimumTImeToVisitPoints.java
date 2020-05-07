@@ -51,4 +51,23 @@ public class MinimumTImeToVisitPoints {
         
         return time;
     }
+	
+	//approach 2
+	public static int diff(int x1 ,int x2 , int y1 ,int y2){
+	    int a = Math.abs(x2-x1);
+	    int b = Math.abs(y2-y1);
+	    return a>b?a:b;
+	}
+	public int minTimeToVisitAllPoints2(int[][] p) {
+	    int totalTime = 0;
+	    int q=1;
+	    int i=0;
+	    while (q!=p.length){
+	        totalTime+=diff(p[i][0] , p[i+1][0] , p[i][1] , p[i+1][1]);
+	        q++;
+	        i++;
+	    }
+
+	    return totalTime;
+	}
 }
