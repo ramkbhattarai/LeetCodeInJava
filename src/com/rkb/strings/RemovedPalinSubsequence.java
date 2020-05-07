@@ -60,5 +60,19 @@ public class RemovedPalinSubsequence {
 	    else return 2;
 	    
 	}
+	
+	// approach2
+	public int removePalindromeSub2(String s) {
+        if(s != null && s.length() > 0) {
+            for(int i=0,j=s.length()-1; i<=j; i++, j--){
+                if(s.charAt(i) != s.charAt(j)) {
+                    return 2;
+                }
+            }
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
 }
