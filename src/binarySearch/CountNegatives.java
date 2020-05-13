@@ -77,4 +77,47 @@ public class CountNegatives {
 
         return -1;
     }
+    
+    
+    // 2nd approach
+    public int countNegatives2(int[][] grid) {
+        int count = 0;
+        
+        for(int i = 0; i < grid.length; ++i){
+        
+          int index = getIndex(grid[i], 0, grid[i].length-1);
+          
+          count += (grid[i].length - index);
+        }
+       return count;
+      }
+    
+    
+    // binary search
+    
+    private int getIndex(int[]array, int s, int e){
+
+      if(s > e)
+        return array.length;
+      
+      int mid = (s+e) >> 1;    
+      
+      if(array[mid] < 0){
+        
+        if(mid == 0){
+          return 0;  
+        }else if(array[mid-1] >= 0)
+          return mid;  
+        
+        return getIndex(array, s, mid);
+      }else{
+        
+        if(mid == array.length-1)
+          return array.length;
+        else if(array[mid+1] < 0)
+          return mid+1;
+        
+        return getIndex(array, mid+1, e);
+      }
+    }
 }
