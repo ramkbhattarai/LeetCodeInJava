@@ -75,5 +75,30 @@ public class Heaters {
 		
 		return 0;
 	}
+	
+	// 2nd approach
+	 public int findRadius2(int[] houses, int[] heaters) {
+	        Arrays.sort(houses);
+	        Arrays.sort(heaters);
+	        
+	        // pre represents the heater that's ahead of the current house
+	        int pre = heaters[0];
+	        // index of the heater
+	        int i = 0;
+	        int res = 0;
+	        for (int house : houses) {
+	            // looking for the heater that's immediately after the current house
+	            while (i < heaters.length - 1 && heaters[i] < house) {
+	                pre = heaters[i];
+	                i++;
+	            }
+	            
+	            int distanceToPreHeater = Math.abs(house - pre);
+	            int distanceToAfterHeater = Math.abs(house - heaters[i]);
+	            res = Math.max(res, Math.min(distanceToPreHeater, distanceToAfterHeater));
+	        }
+	        
+	        return res;
+	    }
 
 }
