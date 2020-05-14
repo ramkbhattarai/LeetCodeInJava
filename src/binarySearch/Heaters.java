@@ -100,5 +100,24 @@ public class Heaters {
 	        
 	        return res;
 	    }
+	 
+	 public int findRadius3(int[] houses, int[] heaters) {
+	        Arrays.sort(houses);
+	        Arrays.sort(heaters);
+	        int curHeater = 0;
+	        int min = 0;
+	        for (int i = 0; i < houses.length; i++) {
+	            int curDist = Math.abs(houses[i] - heaters[curHeater]);
+	            while (curHeater + 1 < heaters.length && heaters[curHeater + 1] < houses[i]) {
+	                curHeater++;
+	                curDist = Math.min(curDist, houses[i] - heaters[curHeater]);
+	            }
+	            if (curHeater + 1 < heaters.length) {
+	                curDist = Math.min(curDist, heaters[curHeater + 1] - houses[i]);
+	            }
+	            min = Math.max(min, curDist);
+	        }
+	        return min;
+	    }
 
 }
