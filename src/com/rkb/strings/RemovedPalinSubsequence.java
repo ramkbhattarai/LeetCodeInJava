@@ -61,7 +61,7 @@ public class RemovedPalinSubsequence {
 	    
 	}
 	
-	// approach2
+	// approach21
 	public int removePalindromeSub2(String s) {
         if(s != null && s.length() > 0) {
             for(int i=0,j=s.length()-1; i<=j; i++, j--){
