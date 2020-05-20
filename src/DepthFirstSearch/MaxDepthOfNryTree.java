@@ -1,6 +1,8 @@
 package DepthFirstSearch;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * Given a n-ary tree, find its maximum depth.
@@ -60,6 +62,43 @@ public class MaxDepthOfNryTree {
 	 // 2 approach 
 	 public int maxDepth2(Node root) {
 	        return root == null ? 0 : root.children.stream().mapToInt((Node child) -> maxDepth(child) + 1).max().orElse(1);
+	    }
+	 
+	 // 3 approach
+	 
+	 public int maxDepth3(Node root) {
+	        if(root==null) return 0;
+	        Queue<Node> queue = new LinkedList<Node>();
+	        int level=0;
+	        queue.offer(root);
+	        while(!queue.isEmpty()){
+	            int size=queue.size();
+	            level++;
+	            for(int i=0;i<size;i++){
+	                Node node=queue.poll();
+	                for(Node nextNode : node.children){
+	                    queue.offer(nextNode);
+	                }
+	            }
+	        }
+	        return level;
+	    }
+	    
+	    public int maxDepth4(Node root) {
+	        return dfs(root);
+	    }
+	    
+	    private int dfs(Node root){
+	        int max=0;
+	        if(root==null) return 0;
+	        else if(root!=null && root.children.size()==0) return 1;
+	        else if(root!=null && root.children.size() > 0){
+	            for(Node node : root.children){
+	                int num=dfs(node);
+	                if(num>max) max=num;
+	            }
+	        }
+	        return max+1;
 	    }
 	}
 
