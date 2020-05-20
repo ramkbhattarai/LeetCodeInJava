@@ -57,4 +57,9 @@ public class MaxDepthOfNryTree {
 		    }
 		    return depth + 1;
 		}
-}
+	 // 2 approach 
+	 public int maxDepth2(Node root) {
+	        return root == null ? 0 : root.children.stream().mapToInt((Node child) -> maxDepth(child) + 1).max().orElse(1);
+	    }
+	}
+
