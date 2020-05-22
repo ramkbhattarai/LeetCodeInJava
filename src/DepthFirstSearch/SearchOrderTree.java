@@ -49,4 +49,33 @@ public class SearchOrderTree {
         cur = node;
         inorder(node.right);
     }
+    
+    // 3rd approach
+    
+    public TreeNode increasingBST(TreeNode root) {
+        
+        List<TreeNode> myList=new ArrayList();
+        myList=inOrderTrav(root,myList);
+        
+       TreeNode newNode=myList.get(0);
+        TreeNode currentNode=newNode; 
+        for(int i=1;i<myList.size();i++)
+        {
+            currentNode.right=myList.get(i);
+            currentNode.left=null; 
+            currentNode=currentNode.right;
+        }
+        return newNode;
+    }
+    
+    public List<TreeNode> inOrderTrav(TreeNode root,List<TreeNode> myList)
+    {
+        if(root==null)
+            return myList;  
+        inOrderTrav(root.left,myList);
+        myList.add(root);
+        inOrderTrav(root.right,myList);
+        
+        return myList;
+    }
 }
