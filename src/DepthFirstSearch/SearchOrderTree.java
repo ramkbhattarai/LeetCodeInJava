@@ -31,4 +31,22 @@ public class SearchOrderTree {
         vals.add(node.val);
         inorder(node.right, vals);
     }
+    // 2nd approach
+    
+    TreeNode cur;
+    public TreeNode increasingBST2(TreeNode root) {
+        TreeNode ans = new TreeNode(0);
+        cur = ans;
+        inorder(root);
+        return ans.right;
+    }
+
+    public void inorder2(TreeNode node) {
+        if (node == null) return;
+        inorder(node.left);
+        node.left = null;
+        cur.right = node;
+        cur = node;
+        inorder(node.right);
+    }
 }
