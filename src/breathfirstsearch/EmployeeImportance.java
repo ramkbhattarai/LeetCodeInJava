@@ -47,5 +47,25 @@ public class EmployeeImportance {
         
         return result;
     }
+    
+    
+    public int getImportance3(List<Employee> employees, int id) {
+        // store employees in a id-employee map for easy referencing
+        Map<Integer, Employee> map = new HashMap<>();
+        for (Employee emp : employees) 
+            map.put(emp.id, emp);
+        
+        return helper(map, id);
+    }
+    
+    // recursively sum up importance value of all subordinates
+    private int helper(Map<Integer, Employee> emps, int id) {
+        Employee emp = emps.get(id);
+        int total = emp.importance;
+        for (Integer subId : emp.subordinates) {
+            total += helper(emps, subId);
+        }
+        return total;
+    }
 
 }
