@@ -30,5 +30,24 @@ public class IsBalancedTree {
 		        if(Math.abs(left - right) > 1) ans = false;
 		        return 1 + Math.max(left, right);
 		    }
+		    
+		    
+		    boolean isB = true;
+		    
+		    public boolean isBalanced3(TreeNode root) {
+		        checkB(root);
+		        return isB;
+		    }
+		    
+		    int checkB(TreeNode cur) {
+		        if (cur == null) return 0;
+		        int lH = checkB(cur.left);
+		        int rH = checkB(cur.right);
+		        
+		        int diff = Math.abs(lH - rH); //check for balance on each node, everything else is simple tree height
+		        if (diff > 1) isB = false;
+		        
+		        return Math.max(lH, rH) + 1;
+		    }
 
 }
