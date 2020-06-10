@@ -55,5 +55,31 @@ public class LeafSimilarTrees {
         dfs(root.right, leafs);
         dfs(root.left, leafs);
     }
+    
+    // 3rd approach
+    
+    public boolean leafSimilar(TreeNode root1, TreeNode root2) {
+        String tree1 = "";
+        String tree2 = "";
+        
+        tree1 = leafs(tree1, root1);
+        tree2 = leafs(tree2, root2);
+        
+        if(tree1.equals(tree2)) return true;
+        return false;
+    }
+    
+    
+    public String leafs(String tree, TreeNode root) {
+        if(root.left == null && root.right == null) {
+            tree = tree + root.val;
+            return tree;
+        }
+        
+        tree = (root.left != null) ? leafs(tree, root.left) : tree;
+        tree = (root.right != null) ? leafs(tree, root.right) : tree;
+        
+        return tree;
+    }
 
 }
