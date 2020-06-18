@@ -43,5 +43,18 @@ public class ChangeToDecimal {
         }
         return val;
     }
+	
+	
+	long pow2;
+    public int getDecimalValue(ListNode head) {
+        if(head==null){
+			pow2 = 1
+            return 0;
+        }
+        int val = getDecimalValue(head.next);
+        val += (int)pow2*head.val;
+        pow2*=2;
+        return val;
+    }
 
 }
