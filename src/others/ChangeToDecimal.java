@@ -56,5 +56,18 @@ public class ChangeToDecimal {
         pow2*=2;
         return val;
     }
+    
+    
+    
+    
+    public int getDecimalValue(ListNode head) {
+        StringBuilder ans = new StringBuilder();
+        while(head != null){
+            ans.append(head.val);
+            head = head.next;
+        }
+        return Integer.parseInt(ans.toString(),2);
+    }
+
 
 }
