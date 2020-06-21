@@ -21,5 +21,38 @@ public class AddTwoNumbers {
 	    }
 	    return dummyHead.next;
 	}
+	
+	
+	
+	// 2nd approach
+	public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+		ListNode res = null, temp = null;
+		int carry = 0, sum = 0;
+		while (l1 != null || l2 != null) {
+			sum += carry;
+			sum += (l1 != null) ? l1.val : 0;
+			sum += (l2 != null) ? l2.val : 0;
+			carry = sum / 10;
+			sum = sum % 10;
+			if (res == null) {
+				res = new ListNode(sum);
+				temp = res;
+			} else {
+				temp.next = new ListNode(sum);
+				temp = temp.next;
+			}
+			if (l1 != null) {
+				l1 = l1.next;
+			}
+			if (l2 != null) {
+				l2 = l2.next;
+			}
+			sum = 0;
+		}
+		if (carry != 0) {
+			temp.next = new ListNode(carry);
+		}
+		return res;
+	}
 
 }
