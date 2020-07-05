@@ -60,7 +60,7 @@ public class CountNegative {
 	
 	//2nd approach
 	
-	public int countNegatives(int[][] grid) {
+	public int countNegatives2(int[][] grid) {
         int n=grid.length-1;
         int m=grid[0].length-1;
         if(grid[n][m]>=0) return 0;
@@ -82,5 +82,31 @@ public class CountNegative {
         }
         return s;
     }
+    
+    //3rd approach
+    public int countNegatives3(int[][] grid) {
+    	int count = 0;
+
+    	    for(int i = 0;i<grid.length;i++){
+    	        int start = 0,end = grid[0].length-1,mid = 0,loc=-1;
+    	        
+    	        //Binary Search
+    	        while(start<=end){
+    	            mid = (start+end)/2;
+    	            if(grid[i][mid]>=0){
+    	                start = mid+1;
+    	            }
+    	            else{
+    	                end = mid-1;
+    	                loc = mid;
+    	            }
+    	        }
+    	        
+    	        if(loc!=-1)//If there was a negative number
+    	        count +=(grid[0].length-loc);
+    	    }
+    	    
+    	    return count;
+    	}
 
 }
