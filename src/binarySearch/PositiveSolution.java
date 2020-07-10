@@ -67,5 +67,35 @@ public class PositiveSolution {
 	        }
 	        return res;
 	    }
+	 
+	 
+	 public List<List<Integer>> findSolution2(CustomFunction customfunction, int z) {
+		    List<List<Integer>> results = new ArrayList<>();
+		    
+		    for (int i = 1; i <= 1000; i++) {
+		        // Skip remaining out-of-bound loops
+		        if (customfunction.f(i, 1) > z) {
+		            break;
+		        }
+		        
+		        // Binary search to find matched element
+		        int left = 1;
+		        int right = 1000;
+		        while (left <= right) {
+		            int mid = left + (right - left) / 2;
+		            int r = customfunction.f(i, mid);
+		            if (r > z) {
+		                right = mid - 1;
+		            } else if (r < z) {
+		                left = mid + 1;
+		            } else {
+		                results.add(Arrays.asList(i, mid));
+		                break;
+		            }
+		        }
+		    }
+		    
+		    return results;
+		}
 
 }
