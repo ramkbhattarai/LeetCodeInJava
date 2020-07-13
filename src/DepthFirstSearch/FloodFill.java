@@ -60,5 +60,27 @@ public class FloodFill {
         }
         return image;
     }
+    
+    
+    public int[][] floodFill3(int[][] image, int sr, int sc, int newColor) {
+        int color = image[sr][sc];
+        if(color == newColor) return image;
+        dfs(newColor,image,sr,sc,color);
+        return image;
+    }
+    
+    private void dfs(int newColor,int[][]image,int sr,int sc,int color){
+        
+      if(sr<0 || sr >= image.length || sc < 0 || sc >= image[0].length || image[sr][sc] != color){
+       return;   
+       }
+        
+        image[sr][sc] = newColor;
+        
+        dfs(newColor,image,sr+1,sc,color);
+        dfs(newColor,image,sr-1,sc,color);
+        dfs(newColor,image,sr,sc+1,color);
+        dfs(newColor,image,sr,sc-1,color);
+    }
 
 }
