@@ -67,5 +67,31 @@ public class LevelOrder {
 	        levelOrderBottom(node.left, ans, depth + 1);
 	        levelOrderBottom(node.right, ans, depth + 1);
 	    }
+	    
+	    // 3rd approach
+	    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+	        if (root == null) {
+	            return new LinkedList();
+	        }
+	        List<List<Integer>> lists = new LinkedList();
+	        Deque<TreeNode> deque = new ArrayDeque(); // use deque as a queue
+	        deque.add(root);
+	        while (!deque.isEmpty()) {
+	            int numNodesInLevel = deque.size();
+	            List<Integer> level = new ArrayList(numNodesInLevel);
+	            while (numNodesInLevel-- > 0) {
+	                TreeNode n = deque.remove();
+	                level.add(n.val);
+	                if (n.left != null) {
+	                    deque.add(n.left);
+	                }
+	                if (n.right != null) {
+	                    deque.add(n.right);
+	                }
+	            }
+	            lists.add(0, level);
+	        }
+	        return lists;
+	    }
 
 }
