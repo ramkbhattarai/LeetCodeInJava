@@ -106,4 +106,53 @@ public boolean isCousins(TreeNode root, int x, int y) {
         return xFound && yFound && parentX != parentY;
     }
 
+
+public boolean isCousins(TreeNode root, int x, int y) {
+    
+    TreeNode parent=null;
+    
+    
+    if(root==null) return false;
+    
+    Queue<TreeNode> q = new LinkedList();
+    
+    HashSet<Integer> hs = new HashSet();
+    
+    q.add(root);
+    
+    while(!q.isEmpty()){
+        
+        int len = q.size();
+        
+        for(int i=0;i<len;i++){
+                            
+            TreeNode curr = q.poll();
+			
+			//All nodes traversed in this level are added to a HashSet (Values of nodes are unique!)
+            hs.add(curr.val);
+            
+			//If both nodes have the same parent
+            if(curr.left!=null && curr.right!=null && curr.left.val==x && curr.right.val==y) return false;
+            
+			//If both nodes have the same parent
+            if(curr.left!=null && curr.right!=null && curr.left.val==y && curr.right.val==x) return false;
+            
+			//If HashSet contains both x & y, they are in the same level without same parent. Hence they are cousins!
+            if(hs.contains(x) && hs.contains(y)) return true;
+             
+            if(curr.left!=null){
+                q.add(curr.left);
+            }
+            if(curr.right!=null){
+                q.add(curr.right);
+            }
+            
+        }
+        hs=new HashSet();
+        
+    }
+    
+    return false;
+}
+
 }
