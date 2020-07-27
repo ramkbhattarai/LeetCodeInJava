@@ -98,5 +98,23 @@ public class largestValues {
         }
         return list;
     }
+    
+    
+    
+    
+    public List<Integer> largestValues4(TreeNode root) {
+        List<Integer> list = new LinkedList<Integer>();
+        dfs(root,list,1);
+        return list;
+    }
+    
+    private void dfs(TreeNode root,List<Integer> list, int depth){
+        if(root==null) return;
+        if(depth > list.size()) list.add(root.val);
+        else list.set(depth-1,Math.max(root.val,list.get(depth-1)));
+        
+        if(root.left!=null) dfs(root.left,list,depth+1);
+        if(root.right!=null) dfs(root.right,list,depth+1);
+    }
 
 }
