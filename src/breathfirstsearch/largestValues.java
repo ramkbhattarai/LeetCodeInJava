@@ -41,5 +41,40 @@ public class largestValues {
         findLevelLargest(node.right,res,level+1);
         
     }
+    
+    
+    public List<Integer> largestValues2(TreeNode root) {
+    	List<Integer> ans = new ArrayList<>();
+    	if (root == null)
+    		return ans;
+    	Queue<TreeNode> q = new LinkedList<>();
+    	q.add(root);
+    	ans.add(root.val);
+    	while (!q.isEmpty()) {
+    		Queue<TreeNode> children = new LinkedList<>();
+    		Integer max = null;
+    		while (!q.isEmpty()) {
+    			TreeNode node = q.poll();
+    			if (max == null) {
+    				if (node.left != null)
+    					max = node.left.val;
+    				else if (node.right != null)
+    					max = node.right.val;
+    			}
+    			if (node.left != null) {
+    				max = Math.max(max, node.left.val);
+    				children.add(node.left);
+    			}
+    			if (node.right != null) {
+    				max = Math.max(max, node.right.val);
+    				children.add(node.right);
+    			}
+    		}
+    		if (max != null)
+    			ans.add(max);
+    		q = children;
+    	}
+    	return ans;
+    }
 
 }
