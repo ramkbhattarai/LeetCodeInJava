@@ -37,5 +37,25 @@ public class CoinChange {
                 arr[i] += arr[i-c];
         return arr[amount];
     }
+	
+	
+	public int change2(int amount, int[] coins) {
+		int[][] dp = new int[coins.length + 1][amount + 1];
+		dp[0][0] = 1;
+		for (int i = 1; i <= coins.length; i++) {
+			dp[i][0] = 1;
+			for (int currAmt = 1; currAmt <= amount; currAmt++) {
+				int coinVal = coins[i - 1];
+				int leaveThisCoin = dp[i - 1][currAmt];
+				if (coinVal > currAmt) {
+					dp[i][currAmt] = leaveThisCoin;
+				} else {
+					int takeThisCoin = dp[i][currAmt - coinVal];
+					dp[i][currAmt] = leaveThisCoin + takeThisCoin;
+				}
+			}
+		}
+		return dp[coins.length][amount];
+	}
 
 }
