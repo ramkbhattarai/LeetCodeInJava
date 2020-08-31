@@ -32,5 +32,34 @@ public class KWeakestRow {
 
         return result;
     }
+	
+	
+	public int[] kWeakestRows2(int[][] mat, int k) {
+        TreeMap<Integer, List<Integer>> map = new TreeMap<>();
+        int rows = mat.length;
+        int cols = mat[0].length;
+        
+        for (int i = 0; i < rows; i++) {            
+            int j = 0;
+            while (j < cols && mat[i][j] != 0) {                
+                j++;
+            }
+            if (!map.containsKey(j)) {
+                map.put(j, new ArrayList<>());
+            }
+            map.get(j).add(i);
+        }
+        
+        int[] res = new int[k];
+        int i = 0;
+        while (i < k) {
+            List<Integer> list = map.get(map.firstKey());
+            for (int j = 0; j < list.size() && i < k; j++) {                
+                res[i++] = list.get(j);
+            }  
+            map.remove(map.firstKey());
+        }
+        return res;        
+    }
 
 }
