@@ -61,5 +61,41 @@ public class KWeakestRow {
         }
         return res;        
     }
+	
+	
+	 public int[] kWeakestRows3(int[][] mat, int k) {
+	        HashSet<Integer> set = new HashSet<>();
+	        int temp =0;
+	        ArrayList<Integer> list = new ArrayList<>();
+	        int soldiers = 0;
+	        int[] res = new int[k];
+	        for(int i = 0; i< mat.length; i++){
+	            for(int j = 0; j< mat[0].length; j++){
+	                  if(mat[i][j] == 1 ) soldiers++;
+	            }
+	             
+	            list.add(soldiers);
+	            mat[i][0] = soldiers; 
+	            soldiers = 0;
+	            mat[i][1] = i;
+	            
+	        }
+	         Collections.sort(list);
+	      
+	    for(int y = 0; y < k; y++){
+	                temp = list.get(y);
+
+	        for(int x = 0; x < mat.length; x++){
+	            if(mat[x][0] == temp && !set.contains(mat[x][1])){
+	                res[y] = mat[x][1];
+	                set.add(mat[x][1]);
+	             
+	                break;
+	            }
+	        }
+	    }
+	                    return res;
+
+	    }
 
 }
