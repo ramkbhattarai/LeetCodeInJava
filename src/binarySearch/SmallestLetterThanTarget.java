@@ -55,5 +55,11 @@ public class SmallestLetterThanTarget {
 	            if (seen[target - 'a']) return target;
 	        }
 	    }
+	 
+	 public char nextGreatestLetter2(char[] letters, char target) {
+	        for (char c: letters)
+	            if (c > target) return c;
+	        return letters[0];
+	    }
 
 }
